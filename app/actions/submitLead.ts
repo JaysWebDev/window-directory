@@ -55,7 +55,7 @@ async function sendLeadNotification(payload: LeadPayload, leadId: string) {
 
   const resend = new Resend(apiKey);
   const from = process.env.RESEND_FROM ?? "onboarding@resend.dev";
-  const to = process.env.LEAD_NOTIFY_EMAIL ?? "jeffkirkjr@gmail.com";
+  const to = process.env.LEAD_NOTIFY_EMAIL ?? (() => { throw new Error("LEAD_NOTIFY_EMAIL not set"); })();
 
   const serviceList = payload.services.join(", ") || "—";
 
